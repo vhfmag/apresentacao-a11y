@@ -7,12 +7,20 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "mdx-deck build src/deck.mdx",
     "pdf": "mdx-deck-export pdf src/deck.mdx",
-    "start": "mdx-deck src/deck.mdx"
+    "start": "mdx-deck src/deck.mdx",
+    "postinstall": "patch-package"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@mdx-deck/export": "^2.5.1",
-    "mdx-deck": "^3.0.9"
+    "mdx-deck": "^2.5.1",
+    "prettier": "^1.18.2",
+    "raw-loader": "^3.1.0"
+  },
+  "dependencies": {
+    "mdx-deck-live-code": "^1.0.1",
+    "patch-package": "^6.1.4",
+    "styled-components": "^4.3.2"
   }
 }

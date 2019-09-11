@@ -1,14 +1,15 @@
 import React from 'react'
-import {ni_blue, ni_green} from './theme'
+import {ni_gradient, ni_blue} from './theme'
 
-export default ({ children, author, date }) => {
+export default ({ children, author, date, level = 1 }) => {
     const screen = window.location.pathname !== '/print'
+    const Tag = `h${level}`
     if(screen) {
         return <div
             style={{
                 width: '100%',
                 height: '100%',
-                background: `linear-gradient(90deg, ${ni_blue} 50%, ${ni_green})`,
+                background: ni_gradient,
                 backgroundSize: '100% 100%',
                 paddingLeft: '1em',
                 color: 'white',
@@ -28,15 +29,16 @@ export default ({ children, author, date }) => {
                     transform: 'translateY(-50%)'
                 }}>
                     <div>{date}</div>
-                    <h1 style={{
+                    <Tag style={{
                         fontFamily: 'Roboto Slab',
                         wordSpacing: '-10%',
                         weight: 'bold',
                         color: 'white',
                         fontSize: '3em',
                         marginTop: 0,
-                        lineHeight: "100%"
-                    }}>{children}</h1>
+                        lineHeight: "100%",
+                        textAlign: "left"
+                    }}>{children}</Tag>
                 </div>
                 <div style={{
                     position: 'absolute',

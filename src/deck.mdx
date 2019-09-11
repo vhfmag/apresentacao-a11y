@@ -1,31 +1,199 @@
+import { Notes, Appear, Head } from "mdx-deck";
+import { LiveCode } from 'mdx-deck-live-code';
+
 import Title from './title'
 import Section from './section'
-export { theme } from './theme';
+import { theme as myTheme } from './theme';
+export const theme = myTheme;
 
-<Title author="Mattias Holmlund" date="2019-09-03">
-Company<br/>
-Introduction
+<Head>
+    <title>Acessibilidade Digital — Victor Magalhães</title>
+</Head>
+
+<Title author=" Victor Magalhães">
+Acessibilidade<br/>
+Digital
 </Title>
 
 ---
 
-## Hello
+<Title level={2}>
+Acessibilidade
+</Title>
 
-- Long bullet
-- b
-
----
-
-<Section>
-Section 1
-</Section>
+<Notes>Acessibilidade implica em questionar o que assumimos como verdade</Notes>
 
 ---
 
-## Slide 1
+### Chegar no 5º do Jus
 
-![img1](https://via.placeholder.com/800x600.png?text=Your+image+here)
+<Notes>Como um cadeirante chegaria no 5º? Assumimos que todos caminham</Notes>
 
 ---
 
-## Slide 2
+### Marcar médico
+
+<Notes>Como um surdo marca médico se a única opção é telefone? Assumem que todos ouvem</Notes>
+
+---
+
+<iframe src="https://sisu.mec.gov.br/inicial" />
+
+<Notes>Como alguém com deficiência motora ou visual poderia se inscrever sem ajuda se o captcha não é acessível via teclado? Assumimos que todos navegam com o mouse</Notes>
+
+---
+
+<iframe src="https://www.sac.ba.gov.br/" />
+
+<Notes>Como alguém com deficiência motora poderia navegar se a ordem não é previsível? Como alguém com deficiência visual poderia navegar se a navegação é pulada?</Notes>
+
+---
+
+<Title level={3}>
+Técnicas e Tecnologias assistivas
+</Title>
+
+---
+
+- Leitor de tela
+- Navegação com o teclado
+- <span lang="en">Display</span> de braile
+- <span lang="en">Widget</span> de libras
+- Personalização de <span lang="en">UI</span>
+    - Modo de alto contraste
+    - Zoom
+    - Tamanho de fonte
+    - Esquema de cores
+    - Redução de movimentos
+
+---
+
+### Como garantir acessibilidade?
+
+---
+
+<Title level={3}>
+Seu app ou conteúdo é...?
+</Title>
+
+---
+
+- Perceptível
+- Operável
+- Compreensível
+- Robusto
+
+---
+
+<Title level={3}>
+Perceptível
+</Title>
+
+<!-- ---
+
+Form com/sem outline -->
+
+---
+
+<LiveCode
+    size="large"
+    title="Imagens com texto alternativo"
+    code="<button><img src='https://image.flaticon.com/icons/png/512/26/26025.png' /></button>"
+/>
+
+---
+
+<LiveCode
+    size="large"
+    title="Botão feito com <div>"
+    code="<div className='button' onClick={() => alert('Lista atualizada!')}>Atualizar lista</div>"
+/>
+
+<!-- Div-botão sem foco / com foco e sem role / com foco e com role -->
+
+---
+
+<!-- Toast anunciado / não anunciado -->
+
+<LiveCode
+    size="large"
+    title="Toast"
+    code={require("!raw-loader!./examples/toast.js").default}
+/>
+
+---
+
+<Title level={3}>
+Operável
+</Title>
+
+---
+
+<LiveCode
+    size="large"
+    title="Dropdown"
+    code={require("!raw-loader!./examples/dropdown.js").default}
+/>
+
+---
+
+<LiveCode
+    size="large"
+    title="Botão feito com <div>"
+    code="<div role='button' className='button' onClick={() => alert('Lista atualizada!')}>Atualizar lista</div>"
+/>
+
+---
+
+<Title level={3}>
+Compreensível
+</Title>
+
+---
+
+<LiveCode
+    size="large"
+    title="Mensagem de erro de validação de formulário"
+    code={require("!raw-loader!./examples/invalidInput.js").default}
+/>
+
+---
+
+<LiveCode
+    size="large"
+    title="Termos em outras línguas"
+    code="<div>Hoje eu tive um planning via call com o PO pra decidir os key results do OKR</div>"
+/>
+
+---
+
+<LiveCode
+    size="large"
+    title="Botão feito com <div>"
+    code={require("!raw-loader!./examples/buttonDivNoRole.js").default}
+/>
+
+---
+
+<Title level={3}>
+Robusto
+</Title>
+
+---
+
+<LiveCode
+    size="large"
+    title="Botão feito com <div>"
+    code={require("!raw-loader!./examples/accessibleButtonDiv.js").default}
+/>
+
+---
+
+<LiveCode
+    size="large"
+    title="Switch"
+    code={require("!raw-loader!./examples/sometimesAria.js").default}
+/>
+
+<!-- ARIA, quando aplicável -->
+

@@ -1,0 +1,194 @@
+diff --git a/node_modules/@mdx-deck/components/LICENSE.md b/node_modules/@mdx-deck/components/LICENSE.md
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/README.md b/node_modules/@mdx-deck/components/README.md
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/Appear.js b/node_modules/@mdx-deck/components/src/Appear.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/AspectRatioSlide.js b/node_modules/@mdx-deck/components/src/AspectRatioSlide.js
+old mode 100644
+new mode 100755
+index a5378e3..762142d
+--- a/node_modules/@mdx-deck/components/src/AspectRatioSlide.js
++++ b/node_modules/@mdx-deck/components/src/AspectRatioSlide.js
+@@ -44,7 +44,7 @@ export default props => {
+   return (
+     <Outer>
+       <FluidFontSize base={10}>
+-        <Inner>{props.children}</Inner>
++        <Inner aria-live="assertive" aria-atomic="true" aria-relevant="additions">{props.children}</Inner>
+       </FluidFontSize>
+     </Outer>
+   )
+diff --git a/node_modules/@mdx-deck/components/src/Catch.js b/node_modules/@mdx-deck/components/src/Catch.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/Clock.js b/node_modules/@mdx-deck/components/src/Clock.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/Embed.js b/node_modules/@mdx-deck/components/src/Embed.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/FluidFontSize.js b/node_modules/@mdx-deck/components/src/FluidFontSize.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/GoogleFonts.js b/node_modules/@mdx-deck/components/src/GoogleFonts.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/Grid.js b/node_modules/@mdx-deck/components/src/Grid.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/Head.js b/node_modules/@mdx-deck/components/src/Head.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/Image.js b/node_modules/@mdx-deck/components/src/Image.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/Keyboard.js b/node_modules/@mdx-deck/components/src/Keyboard.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/MDXDeck.js b/node_modules/@mdx-deck/components/src/MDXDeck.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/Notes.js b/node_modules/@mdx-deck/components/src/Notes.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/Overview.js b/node_modules/@mdx-deck/components/src/Overview.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/Pre.js b/node_modules/@mdx-deck/components/src/Pre.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/Presenter.js b/node_modules/@mdx-deck/components/src/Presenter.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/Print.js b/node_modules/@mdx-deck/components/src/Print.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/Provider.js b/node_modules/@mdx-deck/components/src/Provider.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/QueryString.js b/node_modules/@mdx-deck/components/src/QueryString.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/Ratio.js b/node_modules/@mdx-deck/components/src/Ratio.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/Slide.js b/node_modules/@mdx-deck/components/src/Slide.js
+old mode 100644
+new mode 100755
+index 0e4176f..4c9c0bd
+--- a/node_modules/@mdx-deck/components/src/Slide.js
++++ b/node_modules/@mdx-deck/components/src/Slide.js
+@@ -68,18 +68,34 @@ const Root = styled.div(
+   )
+ )
+ 
+-export const Slide = ({ index, context, ...props }) => (
+-  <Context.Provider
+-    value={{
+-      index,
+-      ...context,
+-    }}
+-  >
+-    <Root>
+-      <AspectRatioSlide {...props} />
+-    </Root>
+-  </Context.Provider>
+-)
++export const Slide = ({ index, context, ...props }) => {
++  const rootRef = React.useRef();
++
++  const goToNext = () => {
++    context.next();
++    rootRef.current.focus();
++  }
++
++  const goToPrevious = () => {
++    context.previous();
++    rootRef.current.focus();
++  }
++
++  return (
++    <Context.Provider
++      value={{
++        index,
++        ...context,
++      }}
++    >
++      <Root ref={rootRef}>
++        <button className="visually-hidden" onClick={goToNext} accessKey="n">Slide seguinte</button>
++        <button className="visually-hidden" onClick={goToPrevious} accessKey="b">Slide anterior</button>
++        <AspectRatioSlide {...props} />
++      </Root>
++    </Context.Provider>
++  )
++}
+ 
+ Slide.defaultProps = {
+   context: {
+diff --git a/node_modules/@mdx-deck/components/src/Steps.js b/node_modules/@mdx-deck/components/src/Steps.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/Storage.js b/node_modules/@mdx-deck/components/src/Storage.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/Style.js b/node_modules/@mdx-deck/components/src/Style.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/Zoom.js b/node_modules/@mdx-deck/components/src/Zoom.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/__tests__/Appear.js b/node_modules/@mdx-deck/components/src/__tests__/Appear.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/__tests__/Clock.js b/node_modules/@mdx-deck/components/src/__tests__/Clock.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/__tests__/GoogleFonts.js b/node_modules/@mdx-deck/components/src/__tests__/GoogleFonts.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/__tests__/Head.js b/node_modules/@mdx-deck/components/src/__tests__/Head.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/__tests__/MDXDeck.js b/node_modules/@mdx-deck/components/src/__tests__/MDXDeck.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/__tests__/Pre.js b/node_modules/@mdx-deck/components/src/__tests__/Pre.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/__tests__/Steps.js b/node_modules/@mdx-deck/components/src/__tests__/Steps.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/__tests__/__snapshots__/Appear.js.snap b/node_modules/@mdx-deck/components/src/__tests__/__snapshots__/Appear.js.snap
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/__tests__/__snapshots__/MDXDeck.js.snap b/node_modules/@mdx-deck/components/src/__tests__/__snapshots__/MDXDeck.js.snap
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/__tests__/__snapshots__/Pre.js.snap b/node_modules/@mdx-deck/components/src/__tests__/__snapshots__/Pre.js.snap
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/__tests__/__snapshots__/Steps.js.snap b/node_modules/@mdx-deck/components/src/__tests__/__snapshots__/Steps.js.snap
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/context.js b/node_modules/@mdx-deck/components/src/context.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/index.js b/node_modules/@mdx-deck/components/src/index.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/mdx-components.js b/node_modules/@mdx-deck/components/src/mdx-components.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/splitSlides.js b/node_modules/@mdx-deck/components/src/splitSlides.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/useSteps.js b/node_modules/@mdx-deck/components/src/useSteps.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@mdx-deck/components/src/useTheme.js b/node_modules/@mdx-deck/components/src/useTheme.js
+old mode 100644
+new mode 100755

@@ -1,0 +1,135 @@
+diff --git a/node_modules/react-live/LICENSE b/node_modules/react-live/LICENSE
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/README.md b/node_modules/react-live/README.md
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/dist/react-live.cjs.js b/node_modules/react-live/dist/react-live.cjs.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/dist/react-live.es.js b/node_modules/react-live/dist/react-live.es.js
+old mode 100644
+new mode 100755
+index ce72ba8..8aa1720
+--- a/node_modules/react-live/dist/react-live.es.js
++++ b/node_modules/react-live/dist/react-live.es.js
+@@ -391,6 +391,7 @@ var Editor = function (_Component) {
+   }
+ 
+   Editor.prototype.componentWillMount = function componentWillMount() {
++    console.log({ normalizedCode: prism(normalizeCode(this.props.code), this.props.language) });
+     var html = prism(normalizeCode(this.props.code), this.props.language);
+     this.setState({ html: html });
+   };
+@@ -405,6 +406,7 @@ var Editor = function (_Component) {
+         language = _ref.language;
+ 
+     if (code !== this.props.code || language !== this.props.language) {
++      console.log({ normalizedCode: normalizeCode(code) });
+       var html = prism(normalizeCode(code), language);
+       this.setState({ html: html });
+     }
+@@ -640,7 +642,12 @@ var LiveProvider = function (_Component) {
+       },
+       React.createElement(
+         'div',
+-        _extends({ className: cn('react-live', className) }, rest),
++        _extends({
++          className: cn('react-live', className),
++          onKeyPress: ev => ev.stopPropagation(),
++          onKeyDown: ev => ev.stopPropagation(),
++          onKeyUp: ev => ev.stopPropagation()
++        }, rest),
+         mountStylesheet && React.createElement(Style, null),
+         children
+       )
+diff --git a/node_modules/react-live/dist/react-live.js b/node_modules/react-live/dist/react-live.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/dist/react-live.min.js b/node_modules/react-live/dist/react-live.min.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/react-live.css b/node_modules/react-live/react-live.css
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/components/Editor/Style.js b/node_modules/react-live/src/components/Editor/Style.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/components/Editor/index.js b/node_modules/react-live/src/components/Editor/index.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/components/Live/LiveEditor.js b/node_modules/react-live/src/components/Live/LiveEditor.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/components/Live/LiveError.js b/node_modules/react-live/src/components/Live/LiveError.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/components/Live/LivePreview.js b/node_modules/react-live/src/components/Live/LivePreview.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/components/Live/LiveProvider.js b/node_modules/react-live/src/components/Live/LiveProvider.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/constants/css.js b/node_modules/react-live/src/constants/css.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/hoc/withLive.js b/node_modules/react-live/src/hoc/withLive.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/index.js b/node_modules/react-live/src/index.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/utils/cn.js b/node_modules/react-live/src/utils/cn.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/utils/getIndent.js b/node_modules/react-live/src/utils/getIndent.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/utils/htmlToPlain.js b/node_modules/react-live/src/utils/htmlToPlain.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/utils/normalizeCode.js b/node_modules/react-live/src/utils/normalizeCode.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/utils/normalizeHtml.js b/node_modules/react-live/src/utils/normalizeHtml.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/utils/prism.js b/node_modules/react-live/src/utils/prism.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/utils/test/cn.test.js b/node_modules/react-live/src/utils/test/cn.test.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/utils/test/errorBoundary.test.js b/node_modules/react-live/src/utils/test/errorBoundary.test.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/utils/test/htmlToPlain.test.js b/node_modules/react-live/src/utils/test/htmlToPlain.test.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/utils/test/normalizeHtml.test.js b/node_modules/react-live/src/utils/test/normalizeHtml.test.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/utils/test/prism.test.js b/node_modules/react-live/src/utils/test/prism.test.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/utils/test/transpile.test.js b/node_modules/react-live/src/utils/test/transpile.test.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/utils/transpile/errorBoundary.js b/node_modules/react-live/src/utils/transpile/errorBoundary.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/utils/transpile/evalCode.js b/node_modules/react-live/src/utils/transpile/evalCode.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/utils/transpile/index.js b/node_modules/react-live/src/utils/transpile/index.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/utils/transpile/transform.js b/node_modules/react-live/src/utils/transpile/transform.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/src/vendor/selection-range/index.js b/node_modules/react-live/src/vendor/selection-range/index.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-live/typings/react-live.d.ts b/node_modules/react-live/typings/react-live.d.ts
+old mode 100644
+new mode 100755

@@ -1,5 +1,5 @@
 import React from 'react'
-import { ni_blue, ni_green, ni_dark_green } from './theme'
+import { ni_blue, ni_purple, ni_teal } from './theme'
 
 export default ({ children }) => {
     const screen = window.location.pathname !== '/print'
@@ -9,7 +9,7 @@ export default ({ children }) => {
         style={{
             width: '100%',
             height: '100%',
-            backgroundColor: ni_green,
+            backgroundColor: ni_purple,
             backgroundSize: '100% 100%',
             paddingLeft: '1em',
             color: 'white',
@@ -31,7 +31,7 @@ export default ({ children }) => {
                     fontFamily: 'Roboto Slab',
                     wordSpacing: '-10%',
                     weight: 'bold',
-                    color: ni_dark_green,
+                    color: ni_teal,
                     fontSize: '3em',
                     marginTop: 0,
                     lineHeight: "100%"
